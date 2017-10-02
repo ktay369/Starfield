@@ -1,26 +1,42 @@
-//your code here
+
 void setup()
 {
-	//your code here
+  size(500, 500);
+  
 }
 void draw()
 {
-	//your code here
+  
 }
-class NormalParticle
+class NormalParticle extends Particle
 {
-	//your code here
+  float x, y, sp, ang;
+  int color;
+  NormalParticle() {
+    x = 250;
+    y = 250;
+    sp = 5;
+    ang = (float)Math.random()* 360;
+  }
+  public void move(){
+    x = x + cos(ang)*sp;
+    y = y +sin(ang)*sp;
+  }
+  public void show(){
+    fill(color);
+    ellipse(x, y, 5, 5);
+  }
 }
 interface Particle
 {
-	//your code here
+  public void show();
+  public void draw();
 }
 class OddballParticle //uses an interface
 {
-	//your code here
+  //your code here
 }
 class JumboParticle //uses inheritance
 {
-	//your code here
+  //your code here
 }
-
