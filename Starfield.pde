@@ -1,36 +1,36 @@
-NormalParticle [] crap;
+NormalParticle [] stuff;
 void setup()
 {
   size(500, 500);
-  crap = new NormalParticle[100];
- for (int i = 0; i <crap.length; i++)
+  stuff = new NormalParticle[100];
+ for (int i = 0; i <stuff.length; i++)
   {
-    crap[i] = new NormalParticle();
+    stuff[i] = new NormalParticle();
   }
 }
 void draw()
 {
   background(0);
-  for (int i = 0; i <crap.length; i++)
+  for (int i = 0; i <stuff.length; i++)
   {
-  crap[i].show();
-  crap[i].move();
+  stuff[i].show();
+  stuff[i].move();
   }
 }
 class NormalParticle 
 {
-  float x, y, sp, ang;
+  double x, y, sp, ang;
   int col;
   NormalParticle() {
     x = 250;
     y = 250;
     sp = 3;
-    ang = (float)Math.random()* 360;
+    ang = Math.random()* 360;
     col = (int)(Math.random()*256);
   }
   public void move(){
-    x = x + cos(ang)*sp;
-    y = y +sin(ang)*sp;
+    x = x + cos((float)ang)*sp;
+    y = y +sin((float)ang)*sp;
     if(sp>=0)
     sp = sp -.03;
   }
