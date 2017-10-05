@@ -1,54 +1,99 @@
-NormalParticle [] stuff;
+//NormalParticle [] stuff;
+Particle[] part;
 void setup()
 {
   size(500, 500);
-  stuff = new NormalParticle[100];
- for (int i = 0; i <stuff.length; i++)
+  part = new Particle[100];
+  //stuff = new NormalParticle[100];
+ for (int i = 0; i <part.length; i++)
   {
-    stuff[i] = new NormalParticle();
+    part[i] = new NormalParticle();
   }
 }
 void draw()
 {
   background(0);
-  for (int i = 0; i <stuff.length; i++)
+  for (int i = 0; i <part.length; i++)
   {
-  stuff[i].show();
-  stuff[i].move();
+  part[i].show();
+  part[i].move();
   }
 }
-class NormalParticle 
+class NormalParticle implements Particle
 {
-  double x, y, sp, ang;
+  double x, y, sp, ang, siz;
   int col;
   NormalParticle() {
     x = 250;
     y = 250;
     sp = 3;
     ang = Math.random()* 360;
-    col = (int)(Math.random()*256);
+    col = (int)(Math.random()*255)+1;
+    siz = 5;
   }
   public void move(){
     x = x + cos((float)ang)*sp;
     y = y +sin((float)ang)*sp;
-    if(sp>=0)
+    if(sp>=0&& siz<=30){
     sp = sp -.03;
+    siz = siz+.1;
+    }
   }
   public void show(){
     fill(col, col, col);
-    ellipse(x, y, 5, 5);
+    ellipse((float)x, (float)y, (float)siz, (float)siz);
   }
 }
+
+
+
 interface Particle
 {
   public void show();
   public void move();
 }
-class OddballParticle //uses an interface
+class OddballParticle implements Particle
 {
-  //your code here
+  double x, y, sp, ang;
+  int col;
+  OddballParticle(){
+   x = 250;
+    y = 250;
+    sp = 3;
+    ang = Math.random()* 360;
+    col = (int)(Math.random()*255)+1;
+  
+  }
+public void show(){
+  fill(col, col, col);
+    ellipse((float)x, (float)y, 5, 5);
 }
-class JumboParticle //uses inheritance
+public void move(){
+  x = x + cos((float)ang)*sp;
+    y = y +sin((float)ang)*sp;
+    if(sp>=0)
+    sp = sp -.03;
+}
+}
+class JumboParticle implements Particle
 {
-  //your code here
+  double x, y, sp, ang;
+  int col;
+  JumboParticle(){
+     x = 250;
+    y = 250;
+    sp = 3;
+    ang = Math.random()* 360;
+    col = (int)(Math.random()*255)+1;
+  }
+ public void show(){
+  fill(col, col, col);
+    ellipse((float)x, (float)y, 5, 5);
+}
+public void move(){
+  x = x + cos((float)ang)*sp;
+    y = y +sin((float)ang)*sp;
+    if(sp>=0)
+    sp = sp -.03;
+}
 }
