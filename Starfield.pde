@@ -7,7 +7,17 @@ void setup()
   //stuff = new NormalParticle[100];
  for (int i = 0; i <part.length; i++)
   {
+    if(i%99==0)
+    part[i] = new JumboParticle();
+    else if (i%98==0)
+    part[i] = new OddballParticle();
+    else
     part[i] = new NormalParticle();
+  }
+  for(int i = 0; i<part.length; i++)
+  {
+   part[i].move();
+   part[i].show();
   }
 }
 void draw()
@@ -36,7 +46,7 @@ class NormalParticle implements Particle
     y = y +sin((float)ang)*sp;
     if(sp>=0&& siz<=30){
     sp = sp -.03;
-    siz = siz+.1;
+    //siz = siz+.1;
     }
   }
   public void show(){
@@ -59,8 +69,6 @@ class OddballParticle implements Particle
   OddballParticle(){
    x = 250;
     y = 250;
-    sp = 3;
-    ang = Math.random()* 360;
     col = (int)(Math.random()*255)+1;
   
   }
@@ -69,31 +77,15 @@ public void show(){
     ellipse((float)x, (float)y, 5, 5);
 }
 public void move(){
-  x = x + cos((float)ang)*sp;
-    y = y +sin((float)ang)*sp;
-    if(sp>=0)
-    sp = sp -.03;
+  x = x + (int)(Math.random()*5)-2;
+    y = y + (int)(Math.random()*5)-2;
+    
 }
 }
-class JumboParticle implements Particle
+class JumboParticle extends NormalParticle
 {
-  double x, y, sp, ang;
-  int col;
   JumboParticle(){
-     x = 250;
-    y = 250;
-    sp = 3;
-    ang = Math.random()* 360;
-    col = (int)(Math.random()*255)+1;
+     siz = 10;
   }
- public void show(){
-  fill(col, col, col);
-    ellipse((float)x, (float)y, 5, 5);
-}
-public void move(){
-  x = x + cos((float)ang)*sp;
-    y = y +sin((float)ang)*sp;
-    if(sp>=0)
-    sp = sp -.03;
-}
+
 }
