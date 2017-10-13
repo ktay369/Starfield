@@ -32,7 +32,8 @@ void draw()
 class NormalParticle implements Particle
 {
   double x, y, sp, ang, siz;
-  int col;
+  int col, col3, col2;
+
   NormalParticle() {
     x = 250;
     y = 250;
@@ -46,17 +47,19 @@ class NormalParticle implements Particle
   public void move(){
     x = x + cos((float)ang)*sp;
     y = y +sin((float)ang)*sp;
-    if(sp>=0&& siz<=30){
-    sp = sp -.03;
+    if(sp>=0&& siz<=60){
+    sp = sp -.01;
     //siz = siz+.1;
     }
     else
     sp = sp +.03;
+   
   }
   public void show(){
     fill(col, col2, col3);
     ellipse((float)x, (float)y, (float)siz, (float)siz);
   }
+ 
 }
 
 
