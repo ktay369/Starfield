@@ -39,7 +39,9 @@ class NormalParticle implements Particle
     sp = 3;
     ang = Math.random()* 360;
     col = (int)(Math.random()*255)+1;
-    siz = 5;
+    col2 = (int)(Math.random()*255)+1;
+    col3 = (int)(Math.random()*255)+1;
+    siz = 15;
   }
   public void move(){
     x = x + cos((float)ang)*sp;
@@ -48,9 +50,11 @@ class NormalParticle implements Particle
     sp = sp -.03;
     //siz = siz+.1;
     }
+    else
+    sp = sp +.03;
   }
   public void show(){
-    fill(col, col, col);
+    fill(col, col2, col3);
     ellipse((float)x, (float)y, (float)siz, (float)siz);
   }
 }
@@ -66,15 +70,17 @@ class OddballParticle implements Particle
 {
   double x, y, sp, ang;
   int col;
+  int siz;
   OddballParticle(){
    x = 250;
     y = 250;
     col = (int)(Math.random()*255)+1;
+    siz = 15;
   
   }
 public void show(){
   fill(col, col, col);
-    ellipse((float)x, (float)y, 5, 5);
+    ellipse((float)x, (float)y, siz, siz);
 }
 public void move(){
   x = x + (int)(Math.random()*5)-2;
@@ -85,7 +91,7 @@ public void move(){
 class JumboParticle extends NormalParticle
 {
   JumboParticle(){
-     siz = 10;
+     siz = 50;
   }
 
 }
